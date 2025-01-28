@@ -1,0 +1,23 @@
+{
+  "name": "api-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@aws-sdk/client-ec2": "^3.687.0",
+    "@aws-sdk/client-ecs": "^3.650.0",
+    "@aws-sdk/client-ssm": "^3.687.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.0",
+    "ioredis": "^5.4.1",
+    "random-word-slugs": "^0.1.7",
+    "socket.io": "^4.7.5"
+  }
+}
