@@ -127,6 +127,30 @@ nohup ${startCommand} > /home/${projectSlug}/app/logs.log 2>&1 &
         console.log(publicIp);
     } catch (error) {
         console.error('Error creating or setting up EC2 instance:', error);
+        res.status(500).json({ 
+            status: 'Internal Server Error' ,
+            status_code: 500,
+            error : error,
+            time : new Date().toISOString()
+        });
+    }
+});
+
+app.get('/api/v2/service-status', async (req, res) => {
+    try {
+        res.status(200).json({ 
+            status: 'API Server is running' ,
+            status_code: 200,
+            time : new Date().toISOString()
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ 
+            status: 'Internal Server Error' ,
+            status_code: 500,
+            error : error,
+            time : new Date().toISOString()
+        });
     }
 });
 
@@ -144,7 +168,12 @@ app.get('/api/v2/status', async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        return res.json(error);
+        res.status(500).json({ 
+            status: 'Internal Server Error' ,
+            status_code: 500,
+            error : error,
+            time : new Date().toISOString()
+        });
     }
 });
 
