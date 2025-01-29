@@ -8,9 +8,20 @@ const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT || 4000
 
+
+
 app.use(cors());
 app.use(express.json())
+app.use((req, res, next) => {
+    const allowedOrigin = "https://weblift.vercel.app";
+    const origin = req.get("Origin");
 
+    if (!origin || origin !== allowedOrigin) {
+        return res.status(403).json({ error: "Forbidden: Access is denied" });
+    }
+
+    next();
+});
 const REGION = 'ap-south-1';
 const INSTANCE_TYPE = 't2.micro';
 const AMI_ID = 'ami-0a51a22a987dc45fd'; 
